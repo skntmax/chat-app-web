@@ -1,24 +1,52 @@
-import logo from './logo.svg';
-import './App.css';
+import { useContext, useEffect , useState } from 'react';
+import { SocketContext } from './context/socket';
+import ChatBox from './component/ChatBox';
+import socketIOClient from 'socket.io-client'
+const socketUrl = 'http://localhost:2222';
+
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  let username 
+  
+   const [uname, setUname] = useState("skntmax")
+   const [socketData, setSocketData] = useState({
+    id:""  
+   })
+
+  useEffect(()=>{
+     
+    let socket = socketIOClient(socketUrl ,{
+      // autoConnect: false,
+    });
+    
+debugger
+    socket.on('connect'  ,()=>{
+         console.log(`socket connected to ${socket.id}`)
+         setSocketData({ ...socketData , id:socket.id})
+         
+         socket.emit('idk' ,{
+          name:"skntmax"
+        }) 
+
+         })
+
+      
+ 
+     
+
+    // do{
+    //    username = window.prompt("please enter username ") 
+    //     setUname(username)
+    // }while(username=="")
+      
+    return () => socket.disconnect();
+
+     
+     
+  } ,[])
+
+   return (<ChatBox socket_props={socketData} uname ={uname}  />
   );
 }
 
