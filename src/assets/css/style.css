@@ -30,14 +30,12 @@
       display: flex;
       justify-content: center;
       justify-items: center;
-     
-
      }
      
 
      .chat_div
      {
-          width:30% ;
+          min-width:90% ;
           height:80vh;
           border: 2px solid grey;
           border-radius: 10px;

@@ -1,5 +1,13 @@
-import React from 'react';
-import io from "socket.io-client"; 
+import io from 'socket.io-client'
+const socketUrl = 'http://localhost:2222';
 
-export const socket = io(process.env.REACT_APP_BASE_URL , { transports: ['websocket'] });
-export const SocketContext = React.createContext();
+
+
+let socket = new  io(socketUrl ,{
+    autoConnect:false ,
+    // withCredentials:true
+  })
+
+
+  export default socket
+  

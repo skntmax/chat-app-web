@@ -1,47 +1,25 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './../assets/css/style.css'
-function ChatDialogue() {
+import {ChatBarClient  , ChatBarHead} from './ChatBar'
+import socket from '../context/socket'
+ 
+function ChatDialogue(props) {
+   
+   const {chatData , uname}  = props 
+
   return (
     <div  className='chat_dialogue'>
     
-     <div  className='chat_div'>
-    lorem500Consequat labore culpa ullamco sint incididunt qui est aliquip. Dolor id ipsum elit exercitation. Cupidatat reprehenderit elit officia cillum proident officia duis proident fugiat cupidatat mollit. Eiusmod do tempor ad duis commodo proident veniam. Irure mollit anim reprehenderit aliqua ex aliqua ea sint.
+     <div  className='chat_div' >
 
-    lorem500Consequat labore culpa ullamco sint incididunt qui est aliquip. Dolor id ipsum elit exercitation. Cupidatat reprehenderit elit officia cillum proident officia duis proident fugiat cupidatat mollit. Eiusmod do tempor ad duis commodo proident veniam. Irure mollit anim reprehenderit aliqua ex aliqua ea sint.
+      { chatData.map((ele ,index)=>{
+         if(ele.user_name==uname)
+           return  <ChatBarHead user_chat_data={ele}  />
+         else 
+         return  <ChatBarClient user_chat_data={ele}  />
+     })}
+       
 
-
-    lorem500Consequat labore culpa ullamco sint incididunt qui est aliquip. Dolor id ipsum elit exercitation. Cupidatat reprehenderit elit officia cillum proident officia duis proident fugiat cupidatat mollit. Eiusmod do tempor ad duis commodo proident veniam. Irure mollit anim reprehenderit aliqua ex aliqua ea sint.s
-
-    lorem500Consequat labore culpa ullamco sint incididunt qui est aliquip. Dolor id ipsum elit exercitation. Cupidatat reprehenderit elit officia cillum proident officia duis proident fugiat cupidatat mollit. Eiusmod do tempor ad duis commodo proident veniam. Irure mollit anim reprehenderit aliqua ex aliqua ea sint.
-
-    lorem500Consequat labore culpa ullamco sint incididunt qui est aliquip. Dolor id ipsum elit exercitation. Cupidatat reprehenderit elit officia cillum proident officia duis proident fugiat cupidatat mollit. Eiusmod do tempor ad duis commodo proident veniam. Irure mollit anim reprehenderit aliqua ex aliqua ea sint.
-    lorem500Consequat labore culpa ullamco sint incididunt qui est aliquip. Dolor id ipsum elit exercitation. Cupidatat reprehenderit elit officia cillum proident officia duis proident fugiat cupidatat mollit. Eiusmod do tempor ad duis commodo proident veniam. Irure mollit anim reprehenderit aliqua ex aliqua ea sint.
-
-    lorem500Consequat labore culpa ullamco sint incididunt qui est aliquip. Dolor id ipsum elit exercitation. Cupidatat reprehenderit elit officia cillum proident officia duis proident fugiat cupidatat mollit. Eiusmod do tempor ad duis commodo proident veniam. Irure mollit anim reprehenderit aliqua ex aliqua ea sint.
-
-    lorem500Consequat labore culpa ullamco sint incididunt qui est aliquip. Dolor id ipsum elit exercitation. Cupidatat reprehenderit elit officia cillum proident officia duis proident fugiat cupidatat mollit. Eiusmod do tempor ad duis commodo proident veniam. Irure mollit anim reprehenderit aliqua ex aliqua ea sint.
-
-    lorem500Consequat labore culpa ullamco sint incididunt qui est aliquip. Dolor id ipsum elit exercitation. Cupidatat reprehenderit elit officia cillum proident officia duis proident fugiat cupidatat mollit. Eiusmod do tempor ad duis commodo proident veniam. Irure mollit anim reprehenderit aliqua ex aliqua ea sint.
-
-    lorem500Consequat labore culpa ullamco sint incididunt qui est aliquip. Dolor id ipsum elit exercitation. Cupidatat reprehenderit elit officia cillum proident officia duis proident fugiat cupidatat mollit. Eiusmod do tempor ad duis commodo proident veniam. Irure mollit anim reprehenderit aliqua ex aliqua ea sint.
-    lorem400
-
-    lorem500Consequat labore culpa ullamco sint incididunt qui est aliquip. Dolor id ipsum elit exercitation. Cupidatat reprehenderit elit officia cillum proident officia duis proident fugiat cupidatat mollit. Eiusmod do tempor ad duis commodo proident veniam. Irure mollit anim reprehenderit aliqua ex aliqua ea sint.
-    lorem400
-
-
-
-    lorem500Consequat labore culpa ullamco sint incididunt qui est aliquip. Dolor id ipsum elit exercitation. Cupidatat reprehenderit elit officia cillum proident officia duis proident fugiat cupidatat mollit. Eiusmod do tempor ad duis commodo proident veniam. Irure mollit anim reprehenderit aliqua ex aliqua ea sint.
-    lorem400
-
-    lorem500Consequat labore culpa ullamco sint incididunt qui est aliquip. Dolor id ipsum elit exercitation. Cupidatat reprehenderit elit officia cillum proident officia duis proident fugiat cupidatat mollit. Eiusmod do tempor ad duis commodo proident veniam. Irure mollit anim reprehenderit aliqua ex aliqua ea sint.
-    lorem400
-
-    lorem500Consequat labore culpa ullamco sint incididunt qui est aliquip. Dolor id ipsum elit exercitation. Cupidatat reprehenderit elit officia cillum proident officia duis proident fugiat cupidatat mollit. Eiusmod do tempor ad duis commodo proident veniam. Irure mollit anim reprehenderit aliqua ex aliqua ea sint.
-    lorem400
-
-    lorem500Consequat labore culpa ullamco sint incididunt qui est aliquip. Dolor id ipsum elit exercitation. Cupidatat reprehenderit elit officia cillum proident officia duis proident fugiat cupidatat mollit. Eiusmod do tempor ad duis commodo proident veniam. Irure mollit anim reprehenderit aliqua ex aliqua ea sint.
-    lorem400
       </div>
     
      </div>

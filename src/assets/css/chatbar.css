@@ -1,0 +1,25 @@
+.chat_bar_head{
+    min-width: 80%;
+    border-radius: 10px;
+    border: 1px solid green;
+    height: fit-content;
+    margin: 5px;
+    text-align: center ;
+    display: inline-flex;
+    float: right;
+}   
+
+chat_bar_head:hover{
+      background-color: rgba(rgb(13, 108, 130), rgba(39, 51, 39, 0.853), rgb(80, 80, 112) , 0.5);
+     cursor: pointer;
+     }
+
+.chat_bar_client{
+    min-width: 80%;
+    border-radius: 10px;
+    border: 1px solid blue;
+    height: fit-content;
+    margin: 5px;
+    text-align: center ;
+    display: inline-flex;
+}

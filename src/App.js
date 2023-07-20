@@ -1,44 +1,38 @@
 import { useContext, useEffect , useState } from 'react';
 import { SocketContext } from './context/socket';
 import ChatBox from './component/ChatBox';
-import socketIOClient from 'socket.io-client'
-const socketUrl = 'http://localhost:2222';
-
-
+import socket from './context/socket'
 
 function App() {
   let username 
   
-   const [uname, setUname] = useState("skntmax")
-   const [socketData, setSocketData] = useState({
+  const [uname, setUname] = useState("")
+  const [socketData, setSocketData] = useState({
     id:""  
    })
-
-  useEffect(()=>{
+   
+   useEffect(()=>{
      
-    let socket = socketIOClient(socketUrl ,{
-      // autoConnect: false,
-    });
-    
-debugger
+     debugger
+     
+     
+         do{
+            username = window.prompt("please enter username ") 
+             setUname(username)
+         }while(username=="")
+
+     socket.connect()
+     
     socket.on('connect'  ,()=>{
-         console.log(`socket connected to ${socket.id}`)
-         setSocketData({ ...socketData , id:socket.id})
-         
-         socket.emit('idk' ,{
-          name:"skntmax"
-        }) 
+         console.log( `socket connected to ${socket.id}`)
+         setSocketData({ ...socketData , id:socket.id })
+
+          socket.on('server-message' ,(data)=>{
+            console.log("data to server " ,data );
+          }) 
 
          })
 
-      
- 
-     
-
-    // do{
-    //    username = window.prompt("please enter username ") 
-    //     setUname(username)
-    // }while(username=="")
       
     return () => socket.disconnect();
 
