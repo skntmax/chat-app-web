@@ -7,15 +7,12 @@ function App() {
   let username 
   
   const [uname, setUname] = useState("")
-  const [socketData, setSocketData] = useState({
+  const [socketData , setSocketData ] = useState({
     id:""  
    })
    
    useEffect(()=>{
-     
-     debugger
-     
-     
+    
          do{
             username = window.prompt("please enter username ") 
              setUname(username)
@@ -36,10 +33,8 @@ function App() {
       
     return () => socket.disconnect();
 
-     
-     
+  
   } ,[])
-
    return (<ChatBox socket_props={socketData} uname ={uname}  />
   );
 }

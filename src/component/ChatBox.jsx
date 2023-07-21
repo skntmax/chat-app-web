@@ -2,12 +2,15 @@ import React, { useEffect, useState } from 'react'
 import './../assets/css/style.css'
 import socket  from './../context/socket'
 import { IoMdSend } from 'react-icons/io';
+import { MdFamilyRestroom } from 'react-icons/md';
+
+
 import ChatDialogue from './ChatDialogue';
 
 function ChatBox(props ) {
 
     //   console.log(io);
-      const [data , setData ]  = useState({ user_message :" ",})
+      const [data , setData ]  = useState({ user_message :"", room:""})
       const [chatData, setChatData] = useState([])
 
 
@@ -27,8 +30,8 @@ function ChatBox(props ) {
     const onChangeHandler =(e)=>{
     debugger
       const { value   ,  name }  = e.target
-            
-               setData({ ...data ,user_message:value  })
+
+               setData({ ...data ,[name]:value  })
     }
 
     const handleKeyDown = (event) => {
@@ -60,23 +63,67 @@ function ChatBox(props ) {
 
          <div className='chat_box'>
 
-         <div  >
+          <div style={{
+          display: "flex",
+          flexDirection:"column" ,
+          gap: "10px"
+         }} >
+          
+          
+         <div style={{
+          display: "flex" 
+         }}>
          <textarea
           name="user_message"
           onChange={onChangeHandler}
           onKeyDown={handleKeyDown} 
           value={data.user_message}
-         className="form-control user_message" rows="1" cols="55" placeholder="Leave a comment here" id="floatingTextarea2"  >
-         </textarea>
+         className="form-control user_message" rows="1" cols="100" placeholder="Your Message " id="floatingTextarea2"  >
+           </textarea>
+           <div>
+             <IoMdSend className='send_button'  size={35} onClick={send} />  
+            </div>
+
+            <br />
+
+            </div> 
+
+              
+
+            <div style={{
+          display: "flex",
+          flexDirection:"row" ,
+         }}   >
+
+          <div>
+          <textarea
+             name="room"
+          onChange={onChangeHandler}
+          onKeyDown={handleKeyDown} 
+          value={data.room}
+         className="form-control user_message" rows="1" cols="100" placeholder="Add Room  " id="floatingTextarea2"  >
+           </textarea>
+          </div>
           
-       
-         </div> 
-          
-           <div >
-           <IoMdSend className='send_button'  size={35} onClick={send} />  
+           <div>
+           <MdFamilyRestroom className='send_button'  size={35} onClick={send} />  
+           
+           </div>
+             </div>
+
+
             </div>
           
+          
+          
+             
          </div>
+
+
+
+
+         
+
 
          </div>
          
