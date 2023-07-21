@@ -18,16 +18,15 @@ function App() {
              setUname(username)
          }while(username=="")
 
-     socket.connect()
-     
+     socket.connect() 
+      
     socket.on('connect'  ,()=>{
          console.log( `socket connected to ${socket.id}`)
          setSocketData({ ...socketData , id:socket.id })
 
           socket.on('server-message' ,(data)=>{
-            console.log("data to server " ,data );
-          }) 
-
+                console.log("data to server " , data );
+            }) 
          })
 
       

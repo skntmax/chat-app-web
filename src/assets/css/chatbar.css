@@ -15,12 +15,14 @@
 } 
 
 .chat_bar_head:hover{
+    transition: all 1s ease;
     -webkit-box-shadow: 9px 11px 38px 4px rgba(0,0,0,0.34);
     -moz-box-shadow: 9px 11px 38px 4px rgba(0,0,0,0.34);
     box-shadow: 9px 11px 38px 4px rgba(0,0,0,0.34);
 }
 
 .chat_bar_client:hover{
+    transition: all 1s ease;
     -webkit-box-shadow: 9px 11px 38px 4px rgba(0,0,0,0.34);
     -moz-box-shadow: 9px 11px 38px 4px rgba(0,0,0,0.34);
     box-shadow: 9px 11px 38px 4px rgba(0,0,0,0.34);

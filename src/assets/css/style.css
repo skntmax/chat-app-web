@@ -38,11 +38,26 @@
 
      .chat_div
      {
+          content: "";
+          position: absolute;
           min-width:90% ;
           height:80vh;
           border: 2px solid grey;
           border-radius: 10px;
           overflow: auto;
+          background: rgb(2,0,36);
+          background: linear-gradient(122deg, rgba(2,0,36,1) 0%, rgba(81,236,255,0.4206057422969187) 0%, rgba(233,241,245,1) 0%, rgba(125,251,248,1) 100%);
+          /* clip-path: polygon(62% 80%, 75% 0%, 52% 20%, 75% 100%, 39% 83%, 0% 50%); */
           
-     }    
+     }  
+     
+     
+     .chat_div:hover{
+     transition: all 1s ease;
+    -webkit-box-shadow: 9px 11px 38px 4px rgba(0,0,0,0.34);
+    -moz-box-shadow: 9px 11px 38px 4px rgba(0,0,0,0.34);
+    box-shadow: 9px 11px 38px 4px rgba(0,0,0,0.34);
+      cursor: pointer;
+     }
+
 

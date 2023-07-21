@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import './../assets/css/style.css'
 import socket  from './../context/socket'
 import { IoMdSend } from 'react-icons/io';
@@ -7,36 +7,55 @@ import { MdFamilyRestroom } from 'react-icons/md';
 
 import ChatDialogue from './ChatDialogue';
 
-function ChatBox(props ) {
+function MemoCount(){
+  const [totaCount, setTotaCount] = useState(undefined)
+      
+    let memo = useMemo(()=>{
+       
+       setInterval(()=>{
+        socket.emit("get-count", null )  
+        socket.on('get-count' ,(count)=>{   
+           setTotaCount(count)
+       }, 3000 )
 
-    //   console.log(io);
+       })
+
+    } , [totaCount])
+
+   return <React.Fragment>{memo}  </React.Fragment>
+}
+
+function ChatBox(props ) {
+  
       const [data , setData ]  = useState({ user_message :"", room:"", joined_room:""})
       const [chatData, setChatData] = useState([])
-      
+      const [totaCount, setTotaCount] = useState(undefined)
+        
          useEffect(()=>{
            
+         
+
           
            socket.on('room-message' ,(socket_data)=>{
-
                      setChatData([...chatData , socket_data ] )
                 })
          
                 socket.on('group-message-to-all' ,(socket_data)=>{
-              
-                    
-                     setChatData([...chatData , socket_data ] )
-             
+                        setChatData([...chatData , socket_data ] )             
                      })
 
-          
-          
+
+           
+       setInterval(()=>{
+        socket.emit("get-count", null )  
+        socket.on('get-count' ,(count)=>{   
+           setTotaCount(count)
+       }, 3000 )
+
+       })
 
 
-         } ,[chatData.length])
-
-
-
-
+         } ,[ chatData.length ] )
 
 
 
@@ -56,7 +75,13 @@ function ChatBox(props ) {
            setData({ ...data ,  user_message:""  })   
         } else{
           socket.emit('room-message' , { ...data , user_name:props.uname  } ,  data.joined_room.trim() )
-          setData({ ...data , user_message:"",   joined_room:data.room.trim() , room:""  })   
+          
+          if(props.socket_props.id!=data.joined_room) {
+                          let obj = {...data , user_name:props.uname }
+                          setChatData([...chatData , obj ])   
+             }   
+
+          setData({ ...data , user_message:"", })   
         }
         
     }
@@ -93,9 +118,9 @@ function ChatBox(props ) {
       return (
          <React.Fragment> 
           <div>
-          <p style={{
+           <p style={{
             textAlign:"center"
-          }}>  Connection  Id : {socket_props.id } : {uname}  : <span>joined group : {data.joined_room} </span> </p> 
+           }} >  <h2 className='text-capitalize' >   {uname}:{totaCount!=undefined && totaCount}  </h2>   <h5>  <span className="badge text-bg-success">  CONNECTION ID : {socket_props.id } </span>   {data.joined_room!="" &&  <span  className='badge text-bg-danger'> GROUP JOINED : {data.joined_room} </span>   }  </h5> </p> 
          <ChatDialogue uname={uname} chatData={chatData} />
 
          <div className='chat_box'>
@@ -145,6 +170,15 @@ function ChatBox(props ) {
            <div>
            <MdFamilyRestroom className='send_button'  size={35} onClick={joinGroup} />  
            </div>
+
+             {
+                data.joined_room!="" &&   <div>
+          <button className='btn btn-sm  btn-primary'  onClick={()=> setData({...data , joined_room:"" , room:""}) }> exit room </button>  
+           </div>
+             }
+          
+
+
              </div>
 
 
