@@ -33,8 +33,6 @@ function ChatBox(props ) {
         
          useEffect(()=>{
            
-         
-
           
            socket.on('room-message' ,(socket_data)=>{
                      setChatData([...chatData , socket_data ] )
@@ -46,13 +44,13 @@ function ChatBox(props ) {
 
 
            
-       setInterval(()=>{
-        socket.emit("get-count", null )  
-        socket.on('get-count' ,(count)=>{   
-           setTotaCount(count)
-       }, 3000 )
+      //  setInterval(()=>{
+      //   socket.emit("get-count", null )  
+      //   socket.on('get-count' ,(count)=>{   
+      //      setTotaCount(count)
+      //  }, 3000 )
 
-       })
+      //  })
 
 
          } ,[ chatData.length ] )
@@ -120,7 +118,7 @@ function ChatBox(props ) {
           <div>
            <p style={{
             textAlign:"center"
-           }} >  <h2 className='text-capitalize' >   {uname}:{totaCount!=undefined && totaCount}  </h2>   <h5>  <span className="badge text-bg-success">  CONNECTION ID : {socket_props.id } </span>   {data.joined_room!="" &&  <span  className='badge text-bg-danger'> GROUP JOINED : {data.joined_room} </span>   }  </h5> </p> 
+           }} >  <h2 className='text-capitalize' >   {uname}:{totaCount!=undefined && totaCount}  </h2>   <h5>  <span className="badge text-bg-success">  CONNECTION ID : {socket_props?socket_props.id:"loading" } </span>   {data.joined_room!="" &&  <span  className='badge text-bg-danger'> GROUP JOINED : {data.joined_room} </span>   }  </h5> </p> 
          <ChatDialogue uname={uname} chatData={chatData} />
 
          <div className='chat_box'>
