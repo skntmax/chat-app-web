@@ -3,6 +3,8 @@ importScripts(
   "https://www.gstatic.com/firebasejs/8.10.0/firebase-messaging.js"
 );
 
+
+
 const firebaseConfig = {
     apiKey : "AIzaSyCxRmzLAl1BcqwemxsdOWJo0rtJLnOiDY0",
   authDomain: "react-chatapp-d1639.firebaseapp.com",
@@ -21,6 +23,7 @@ messaging.onBackgroundMessage((payload) => {
     "[firebase-messaging-sw.js] Received background message ",
     payload
   );
+   
   const notificationTitle = payload.notification.title;
   const notificationOptions = {
     body: payload.notification.body,

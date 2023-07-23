@@ -11,7 +11,7 @@ let span_list = [ "primary", "secondary", "success", "danger", "warning", "info"
 
 function ChatBarHead({user_chat_data}) {
   return ( <p className="chat_bar_head">
-   <span className="badge text-bg-success"> {user_chat_data.user_name} </span>
+   <span className="badge text-bg-success my-auto"> {user_chat_data.user_name} </span>
               :  {  user_chat_data.user_message}
             </p>
      
@@ -21,7 +21,7 @@ function ChatBarHead({user_chat_data}) {
 
 function ChatBarClient({user_chat_data}) {
   return ( <div className="chat_bar_client">
-  <span className={`badge text-bg-${span_list[randomIntFromInterval(0,7)]}`}>{user_chat_data.user_name}</span>
+  <span className={`badge my-auto text-bg-${span_list[randomIntFromInterval(0,7)]}` } >{user_chat_data.user_name}</span>
              :  {  user_chat_data.user_message}
             </div>
      

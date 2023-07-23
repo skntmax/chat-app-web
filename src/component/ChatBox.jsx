@@ -7,24 +7,6 @@ import { MdFamilyRestroom } from 'react-icons/md';
 
 import ChatDialogue from './ChatDialogue';
 
-function MemoCount(){
-  const [totaCount, setTotaCount] = useState(undefined)
-      
-    let memo = useMemo(()=>{
-       
-       setInterval(()=>{
-        socket.emit("get-count", null )  
-        socket.on('get-count' ,(count)=>{   
-           setTotaCount(count)
-       }, 3000 )
-
-       })
-
-    } , [totaCount])
-
-   return <React.Fragment>{memo}  </React.Fragment>
-}
-
 function ChatBox(props ) {
   
       const [data , setData ]  = useState({ user_message :"", room:"", joined_room:""})
@@ -53,7 +35,7 @@ function ChatBox(props ) {
       //  })
 
 
-         } ,[ chatData.length ] )
+         } ,[ chatData.length , totaCount  ] )
 
 
 
@@ -118,7 +100,16 @@ function ChatBox(props ) {
           <div>
            <p style={{
             textAlign:"center"
-           }} >  <h2 className='text-capitalize' >   {uname}:{totaCount!=undefined && totaCount}  </h2>   <h5>  <span className="badge text-bg-success">  CONNECTION ID : {socket_props?socket_props.id:"loading" } </span>   {data.joined_room!="" &&  <span  className='badge text-bg-danger'> GROUP JOINED : {data.joined_room} </span>   }  </h5> </p> 
+           }} >  <h2 className='text-capitalize ' >   {uname} 
+           <button type="button" className="btn btn-sm btn-primary mx-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+           Notify
+          </button> 
+
+           </h2>
+
+     
+               
+           <h5>  <span className="badge text-bg-success">  CONNECTION ID : {socket_props?socket_props.id:"loading" } </span>   {data.joined_room!="" &&  <span  className='badge text-bg-danger'> GROUP JOINED : {data.joined_room} </span>   }  </h5> </p> 
          <ChatDialogue uname={uname} chatData={chatData} />
 
          <div className='chat_box'>

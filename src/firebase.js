@@ -19,6 +19,15 @@ const firebaseConfig = {
   measurementId: "G-351T4SXT6Y"
 };
 
+// apiKey : process.env.apiKey ,
+//   authDomain: process.env.authDomain ,
+//   projectId: process.env.projectId ,
+//   storageBucket:process.env.storageBucket,
+//   messagingSenderId: process.env.messagingSenderId ,
+//   appId: process.env.appId ,
+//   measurementId: process.env.measurementId 
+
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const messaging = getMessaging(app);
